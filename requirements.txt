@@ -1,0 +1,18 @@
+# Hand-written for turbbench's setup_repo.py (pip install -r a requirements.txt-
+# shaped file) - translated from external/DeTurb/pyproject.toml's own [project]
+# dependencies, which is DeTurb's actual source of truth. torch/torchvision get
+# pulled out and installed from PyTorch's own CUDA wheel index by setup_repo.py
+# regardless of what's pinned here (see clean_requirements()/setup_env()).
+#
+# Deliberately excludes lpips (pyproject.toml's optional-dependencies.metrics,
+# also in the repo's own requirements-metrics.txt): only DeTurb's own standalone
+# `deturb-metrics` CLI and evaluation.py/perceptual_video.py import it - the
+# model_adapter build_model()/forward path doesn't, and turbbench's harness
+# computes LPIPS itself via torchmetrics (already a turbbench_harness dependency,
+# installed into every adapter env regardless of this file) rather than DeTurb's
+# own `lpips` package.
+torch>=2.14.1,<3
+torchvision>=0.29.1,<1
+numpy>=1.26,<3
+opencv-python-headless>=4.10,<5
+Pillow>=10
