@@ -19,3 +19,5 @@ outputs/
 *.mov
 *.log
 manifests/*.json
+
+*.pyc
